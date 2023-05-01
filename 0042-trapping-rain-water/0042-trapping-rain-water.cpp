@@ -22,17 +22,17 @@ public:
         }
         
         
-        //minimum array
-        int mini[n];
+        //minimum array->prev as minimum
         for(int i = 0;i < n;i++){
-            mini[i]=min(prev[i],next[i]);
+            prev[i]=min(prev[i],next[i]);
         }
+        
         
         //calculating water
         int water = 0;
         for(int i = 1;i < n-1;i++){
-            if(height[i]<mini[i]){
-                water+=(mini[i]-height[i]);
+            if(height[i]<prev[i]){
+                water+=(prev[i]-height[i]);
             }
         }
         
