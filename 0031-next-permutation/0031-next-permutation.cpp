@@ -24,7 +24,7 @@ public:
                 break;
             }
         }
-        //4)Swapping idx and idx+1
+        //4)Swapping idx and j
         int temp = nums[idx];
         nums[idx]=nums[j];
         nums[j]=temp;
