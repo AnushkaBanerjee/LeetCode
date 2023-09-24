@@ -8,7 +8,7 @@ class Solution{
     vector<int> duplicates(int arr[], int n) {
         // code here vector<int> duplicates(int arr[], int n) {
         vector<int>v;
-        int a[n+1]={0};
+        int a[n]={0};
         for(int i=0;i<n;i++)a[arr[i]]+=1;
         for(int i=0;i<n;i++){
             if(a[i]>1)v.push_back(i);
