@@ -9,12 +9,20 @@ public:
         //first occurrence 
         while(lo<=hi){
             int mid = lo + (hi - lo)/2;
-            if(nums[mid] <  target) lo = mid + 1;
-            else if(nums[mid] > target)hi  = mid-1;
-            else{
-                if(nums[mid] == target) v[0] = mid;
-                hi = mid-1;
+            if(nums[mid]==target){
+                if(mid==0){
+                    v[0] = mid;
+                    break;
+                }
+                else if(nums[mid-1]!=target){
+                    v[0] = mid;
+                    break;
+                }
+                else hi = mid-1;
             }
+            
+            else if(nums[mid]<target) lo = mid+1;
+            else hi = mid-1;
         }
         
         
@@ -28,13 +36,20 @@ public:
         
         while(lo<=hi){
             int mid = lo + (hi - lo)/2;
-            if(nums[mid] <  target) lo = mid + 1;
-            else if(nums[mid] > target)hi  = mid-1;
-            else{
-                if(nums[mid] == target) v[1] = mid;
-                
-                lo = mid+1;
+            if(nums[mid]==target){
+                if(mid==n-1){
+                    v[1] = mid;
+                    break;
+                }
+                else if(nums[mid+1]!=target){
+                    v[1] = mid;
+                    break;
+                }
+                else lo = mid+1;
             }
+            else if(nums[mid] <  target) lo = mid + 1;
+            else hi  = mid-1;
+            
         }
     
          return v;
