@@ -1,26 +1,33 @@
 class Solution {
 public:
     bool isIsomorphic(string s, string t) {
-        if(s.length()!=t.length()) return false;
-        vector<int>v(150,1000);//we make use of an extra array here
-        for(int i = 0;i < s.length();i++){
-            int idx = (int)s[i];
-            if(v[idx]==1000) v[idx] = s[i]-t[i];
-            else if(v[idx]!=s[i]-t[i]) return false;
-            
-        }
-        //emptying the vector
-        for(int i=0;i < 150;i++){
-            v[i]=1000;
+        if(s.length()!= t.length()) return false;
+        int n = s.length();
+        vector<char> v(127,'#');
+        //in this 'v' -> 0-a,1-b
+        for(int i = 0;i < n;i++ ){
+            int idx = s[i];
+           if (v[idx]=='#') v[idx] = t[i];
+            else {
+                if(v[idx]!=t[i]) return false;
+                }        
         }
         
-        //from t's perspective
-        for(int i = 0;i < s.length();i++){
-            int idx = (int)t[i];
-            if(v[idx]==1000) v[idx] = t[i]-s[i];
-            else if(v[idx]!=t[i]-s[i]) return false;
-            
+        for(int i = 0;i < v.size() ;i++){
+            v[i] = '#';
         }
+        
+         for(int i = 0;i < n;i++ ){
+            int idx = t[i];
+           if (v[idx]=='#') v[idx] = s[i];
+            else {
+                if(v[idx]!=s[i]) return false;
+                }        
+        }
+        
         return true;
+            
+        
     }
+    
 };
