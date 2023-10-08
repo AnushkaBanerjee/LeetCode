@@ -44,4 +44,5 @@ public:
         
         return minCapacity;
     }
+    //TC = O(n * log(hi-lo));
 };
