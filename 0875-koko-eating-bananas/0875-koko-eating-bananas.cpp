@@ -2,15 +2,15 @@ class Solution {
 public:
     
     bool check(int speed,vector<int>& piles,int hour){
-        int count = 0;
+        long long count = 0;
        int n = piles.size();
        for(int i = 0;i < n;i++){
-           if(count > hour) return false;
+           // if(count > hour) return false;
            if(speed >= piles[i]) count++;
            else if(piles[i]%speed==0){
-               count+=piles[i]/speed;
+               count+=(long long)(piles[i]/speed);
            }
-           else count+= piles[i]/speed + 1;//Very imp
+           else count+=(long long)(piles[i]/speed + 1);//Very imp
        }
     
         
