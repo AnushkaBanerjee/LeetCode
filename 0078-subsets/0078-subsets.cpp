@@ -1,23 +1,23 @@
 class Solution {
 public:
     
-   void  helper(vector<int>& nums,vector<int> ans,vector<vector<int>> &finalAns,int idx)
-       
+   void  helper(vector<int>& nums,int idx,vector<vector<int>>&v,vector<int>temp)
+      
     {
         if(idx == nums.size()){
-            finalAns.push_back(ans);
+            v.push_back(temp);
             return;
         }
      
-        helper(nums,ans,finalAns,idx+1);
-        ans.push_back(nums[idx]);
-        helper(nums,ans,finalAns,idx+1);
+        helper(nums,idx+1,v,temp);//not pick
+        temp.push_back(nums[idx]);
+        helper(nums,idx+1,v,temp);//one line missing
     }
     vector<vector<int>> subsets(vector<int>& nums) {
         //we need tp store the vectors in a vector
         vector<int> ans;
         vector<vector<int>> finalAns;
-        helper(nums,ans,finalAns,0);
+        helper(nums,0,finalAns,ans);
         return finalAns;
         
     }
