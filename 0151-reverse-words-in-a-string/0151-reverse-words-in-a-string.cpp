@@ -9,8 +9,8 @@ public:
         }
         reverse(ans.begin(),ans.end());
         token="";
-        for(string x:ans){
-            token +=x;
+        for(int i = 0;i < ans.size();i++){
+            token +=ans[i];
             token+=" ";
         }
         token.pop_back();
