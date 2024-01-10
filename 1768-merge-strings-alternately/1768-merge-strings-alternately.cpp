@@ -4,8 +4,6 @@ public:
         string word3 = "";
         int j=0 ,k= 0;
         int length = min(word1.size(),word2.size());
-        int n = word1.size();
-        int m = word2.size();
         for(int i = 0;i < 2*length;i++){
             if(i % 2 == 0){
                 word3 += word1[j];
