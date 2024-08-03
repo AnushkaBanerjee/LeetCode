@@ -9,9 +9,6 @@ public:
             revNum = (revNum * 10) + lastDigit;                
             x = x / 10;
         }
-        if(x < 0){
-            return false;
-        }
         
         if(revNum == originalNum){
             return true;
