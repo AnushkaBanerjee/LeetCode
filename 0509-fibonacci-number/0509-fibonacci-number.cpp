@@ -2,13 +2,8 @@ class Solution {
 public:
     int fib(int N) {
         // Base Condition.
-   if(N == 0)
-   {
-       return 0;
-   }
-    if(N == 1)
-   {
-       return 1;
+   if(N <= 1){
+       return N;
    }
 
    // Problem broken down into 2 functional calls
