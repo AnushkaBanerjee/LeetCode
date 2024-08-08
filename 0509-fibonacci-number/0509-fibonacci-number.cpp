@@ -2,16 +2,19 @@ class Solution {
 public:
     int fib(int N) {
         // Base Condition.
-   if(N <= 1)
+   if(N == 0)
    {
-       return N;
+       return 0;
+   }
+    if(N == 1)
+   {
+       return 1;
    }
 
    // Problem broken down into 2 functional calls
    // and their results combined and returned.
-   int last = fib(N-1);
-   int slast = fib(N-2);
    
-   return last + slast;
+   
+   return  fib(N-1) + fib(N-2);
     }
 };
