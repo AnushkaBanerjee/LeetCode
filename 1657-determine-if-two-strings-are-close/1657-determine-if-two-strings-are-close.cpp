@@ -18,8 +18,8 @@ public:
             }
         }
 
-        std::sort(freq1.begin(), freq1.end());
-        std::sort(freq2.begin(), freq2.end());
+        sort(freq1.begin(), freq1.end());
+        sort(freq2.begin(), freq2.end());
 
         for (int i = 0; i < 26; i++) {
             if (freq1[i] != freq2[i]) {
