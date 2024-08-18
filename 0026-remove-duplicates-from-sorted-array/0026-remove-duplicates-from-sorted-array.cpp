@@ -15,5 +15,6 @@ public:
         }
         
         return setSize;
+        //the time complexity of the above approach is : O(n log n) + O(n)
     }
 };
