@@ -1,7 +1,7 @@
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
-        //brute force
+        //brute force using extra space
         vector<int>temp;
         int n = nums.size();
         
