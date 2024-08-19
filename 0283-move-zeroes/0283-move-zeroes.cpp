@@ -1,26 +1,27 @@
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
-        //brute force using extra space
-        vector<int>temp;
+        //optimal approach using two pointers
+        
         int n = nums.size();
         
+        int j = -1;
+        
+        
+        //find the first occurence if 0 in the array
         for(int i = 0;i < n;i++){
-            if(nums[i] != 0){
-                temp.push_back(nums[i]);
+            if(nums[i] == 0) {
+                j = i;
+                break;
             }
         }
+        if(j == -1) return;
         
-        
-        int tempSize = temp.size();
-       
-
-        for(int i = 0;i < tempSize ;i++){
-            nums[i]  = temp[i];
-        }
-        
-        for(int i = tempSize ;i<n;i++){
-            nums[i] = 0;
+        for(int i = j+1;i < n;i++){
+            if(nums[i] != 0){
+                swap(nums[i],nums[j]);
+                j++;
+            }
         }
     }
 };
