@@ -1,30 +1,15 @@
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
-        //better solution
-        
+        //optimal solution
         int n = nums.size();
-        
-        vector<int>hash;
-        
-        for(int i = 0;i <= n;i++){
-            hash.push_back(0);
-        }
-        
-        //increasing the hash values of elements present
-        
+        int sum1 =( n * (n+1)) / 2;
+        int sum2 = 0;
         for(int i = 0;i < n;i++){
-            hash[nums[i]]++;
+            sum2+= nums[i];
         }
         
-        //finding missing element
-        for (int i = 0; i <= n; i++) {
-         if (hash[i] == 0) {
-            return i;
-            }
-        }
-        
-        return -1;
+        return (sum1-sum2);
         
     }
 };
