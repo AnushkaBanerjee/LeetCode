@@ -1,16 +1,21 @@
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
+        
         int n = nums.size();
-        int singleOne = 0;
-        if(n == 1) return nums[0];
-        sort(nums.begin(),nums.end());
-        for(int i = 0;i<n;i+=2){
-            if(nums[i]!=nums[i+1]) {
-                singleOne = nums[i];
-                break;
+        int num = 0;
+        for(int i = 0;i < n;i++){
+            num = nums[i];
+            int count = 0;
+            for(int j = 0;j < n;j++){
+                if(nums[j] == num)
+                    count++;
+                
             }
+            
+            if(count == 1) return num;
         }
-        return singleOne;
+        
+        return -1;
     }
 };
