@@ -1,21 +1,17 @@
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
-        
+       map<long ,long> mpp;
         int n = nums.size();
-        int num = 0;
-        for(int i = 0;i < n;i++){
-            num = nums[i];
-            int count = 0;
-            for(int j = 0;j < n;j++){
-                if(nums[j] == num)
-                    count++;
-                
-            }
-            
-            if(count == 1) return num;
-        }
+       for(int i = 0;i < n;i++ ){
+           mpp[nums[i]]++;
+       }
         
+        for (auto it : mpp) {
+        if (it.second == 1)
+            return it.first;
+    }
         return -1;
+        
     }
 };
