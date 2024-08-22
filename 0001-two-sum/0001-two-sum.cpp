@@ -1,16 +1,17 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        //complexity : O(n^2)
+        //complexity : O(n log n)
         int n = nums.size();
+        map <int,int> mpp;
         for(int i = 0;i < n;i++){
-            for(int j = i+1;j < n;j++){
-                if(nums[i] + nums[j] == target){
-                    return {i,j};
-                }
+            int moreNeeded = target - nums[i];
+            if(mpp.find(moreNeeded) != mpp.end()){
+                return {mpp[moreNeeded],i};
             }
-            
+             mpp[nums[i]] = i;
         }
+       
         return {-1,-1};
     }
 };
