@@ -1,25 +1,16 @@
 class Solution {
 public:
     void sortColors(vector<int>& nums) {
-       //Dutch Flag Algorithm
-        //one pass solution
-        int lo=0,mid=0,hi=nums.size()-1;
-        //1)think about mid
-        //2)0 to lo-1->0 , hi+1 to end->2
-        while(mid<=hi){
-            if(nums[mid]==2){
-                
-                swap(nums[mid],nums[hi]);
-                hi--;    
-            }
-            else if(nums[mid]==0){
-                swap(nums[mid],nums[lo]);
-                mid++;
-                lo++;
-            }
-            else mid++;
+        int noZ = 0,noO = 0,noT = 0;
+        int n = nums.size();
+        for(int i = 0;i < n;i++){
+            if(nums[i] == 0) noZ++;
+            if(nums[i] == 1) noO++;
+            if(nums[i]== 2) noT++;
         }
         
-        return;
+        for(int i = 0;i < noZ;i++) nums[i] = 0;
+        for(int i = noZ;i < noZ+noO;i++) nums[i] = 1;
+        for(int i = noZ + noO;i < n;i++) nums[i] = 2;
     }
 };
