@@ -1,19 +1,16 @@
 class Solution {
 public:
     vector<int> getRow(int rowIndex) {
-        vector<vector<int>> pascalTable;
+        long long ans = 1;
+    vector<int> ansRow;
+    ansRow.push_back(1); //inserting the 1st element
 
-    for(int r=0; r <= rowIndex; r++) {
-        
-        pascalTable.push_back(vector<int>(r+1, 1));
-
-        for(int c=1; c < r; c++) {
-            pascalTable[r][c] = pascalTable[r-1][c] + pascalTable[r-1][c-1];
-        }
+    //calculate the rest of the elements:
+    for (int col = 1; col < rowIndex+1; col++) {
+        ans = ans * (rowIndex+1 - col);
+        ans = ans / col;
+        ansRow.push_back(ans);
     }
-    
-    return pascalTable[rowIndex];
+    return ansRow;
     }
-    
-   
 };
