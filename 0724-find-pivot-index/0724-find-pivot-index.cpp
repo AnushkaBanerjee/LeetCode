@@ -1,19 +1,17 @@
 class Solution {
 public:
     int pivotIndex(vector<int>& nums) {
-         int n = nums.size();
-       
+            int n = nums.size();
+        int totalSum = 0;
+        for(auto it:nums){
+            totalSum += it;
+        }
+        int preSum = 0;
+        //finding rem and matching
         for(int i = 0;i < n;i++){
-             int sumL = 0,sumR = 0;
-            for(int j = 0 ;j < i;j++){
-                sumL += nums[j];
-            }
             
-            for(int k = i+1;k < n;k++){
-                sumR += nums[k];
-            }
-            if(sumL == sumR) return i;
-          
+            if(preSum * 2 == (totalSum - nums[i])) return i;
+            preSum += nums[i];
         }
         return -1;
     }
