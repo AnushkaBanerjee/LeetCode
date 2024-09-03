@@ -10,14 +10,14 @@ public:
             if (arr[mid] == k) return true;
 
             //Edge case:
-            if (arr[low] == arr[mid] && arr[mid] == arr[high]) {
+            else if (arr[low] == arr[mid] && arr[mid] == arr[high]) {
                 low = low + 1;
                 high = high - 1;
-                continue;
+                
             }
 
             //if left part is sorted:
-            if (arr[low] <= arr[mid]) {
+            else if (arr[low] <= arr[mid]) {
                 if (arr[low] <= k && k <= arr[mid]) {
                     //element exists:
                     high = mid - 1;
