@@ -42,13 +42,13 @@ public:
     }
     vector<int> targetIndices(vector<int>& nums, int target) {
         sort(nums.begin(),nums.end());
-       vector<int>v;
+      
          int n = nums.size();
         int lb = lowerBound(nums,target,n);
         if(lb == n || nums[lb]!= target) return {};
         int ub = upperBound(nums,target,n);
         if((ub-1) == lb) return {lb};
-         
+          vector<int>v;
         for(int i = lb;i <= ub-1;i++){
             v.push_back(i);
         }
