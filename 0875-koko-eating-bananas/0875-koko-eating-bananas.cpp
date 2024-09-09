@@ -5,7 +5,8 @@ public:
     int n = v.size();
     //find total hours:
     for (int i = 0; i < n; i++) {
-        totalH += ceil((double)(v[i]) / (double)(hourly));
+        if(v[i]%hourly == 0) totalH += v[i]/hourly;
+        else totalH += v[i]/hourly + 1;
         if(totalH > limit) break;
     }
     return totalH;
