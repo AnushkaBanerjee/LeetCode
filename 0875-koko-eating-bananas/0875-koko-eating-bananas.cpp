@@ -1,41 +1,29 @@
 class Solution {
 public:
-    
-    bool check(int speed,vector<int>& piles,int hour){
-        long long count = 0;
-       int n = piles.size();
-       for(int i = 0;i < n;i++){
-           // if(count > hour) return false;
-           if(speed >= piles[i]) count++;
-           else if(piles[i]%speed==0){
-               count+=(long long)(piles[i]/speed);
-           }
-           else count+=(long long)(piles[i]/speed + 1);//Very imp
-       }
-    
-        
-        if(count > hour) return false;
-        else return true;
+    int calculateTotalHours(vector<int> &v, int hourly,int limit) {
+    int totalH = 0;
+    int n = v.size();
+    //find total hours:
+    for (int i = 0; i < n; i++) {
+        totalH += ceil((double)(v[i]) / (double)(hourly));
+        if(totalH > limit) break;
     }
+    return totalH;
+}
     int minEatingSpeed(vector<int>& piles, int h) {
-         int n = piles.size();
-        int mx = -1;
-        for(int i = 0;i<n;i++){
-            mx = max(mx,piles[i]);
+        int low = 1, high = *max_element(piles.begin(),piles.end());
+
+    //apply binary search:
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        int totalH = calculateTotalHours(piles, mid,h);
+        if (totalH <= h) {
+            high = mid - 1;
         }
-        
-        int lo = 1;
-        int hi = mx;
-        int ans = -1;
-        while(lo<=hi){
-            int mid = lo + (hi-lo)/2;
-            if(check(mid,piles,h)==true){
-                ans = mid;
-                hi = mid-1;
-            }
-            else lo = mid+1;
+        else {
+            low = mid + 1;
         }
-        
-        return ans;
+    }
+    return low;
     }
 };
