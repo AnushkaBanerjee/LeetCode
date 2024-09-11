@@ -19,7 +19,7 @@ public:
     
     int minDays(vector<int>& bloomDay, int m, int k) {
         int n = bloomDay.size();
-        long long totalFlowers = m*1LL*k*1LL;//to overcome overflow condition
+        long long totalFlowers = (long long)m*k;//to overcome overflow condition
         int maxi = *max_element(bloomDay.begin(),bloomDay.end());//finding the max element in the array
         int mini = *min_element(bloomDay.begin(),bloomDay.end());//finding the min element in the array
         
