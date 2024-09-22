@@ -1,48 +1,30 @@
 class Solution {
 public:
-    bool check(int mid,vector<int>& weights, int days){
-        //3,2,2,4,1,4    days = 3  mid = 
-        int n = weights.size();
-        int m = mid;
-        int count = 1;//no of days to do the work for this given mid
-        for(int i = 0;i < n;i++){
-            if(m>=weights[i]){
-            m-=weights[i];
+    int daysReq(vector<int>& weights,int capacity){
+        int d = 1,load = 0;
+        for(auto it :  weights){
+            if(load + it > capacity){
+                d += 1;
+                load = it;
             }
             else{
-                count++;
-                m = mid;
-                m-= weights[i];
-                
-            }
+            load += it;
         }
-        if(count > days) return false;
-        else return true;
-     }
-    
-    
-    int shipWithinDays(vector<int>& weights, int days) {
-        int n = weights.size();
-        int max = INT_MIN;
-        int sum = 0;
-        for(int i = 0;i < n;i++){
-            if(max<weights[i]) max  = weights[i];
-            sum+=weights[i];
         }
         
-        int lo = max;
-        int hi = sum;
-        int minCapacity = sum;
-        while(lo <= hi){
-            int mid = lo + (hi-lo)/2;
-            if(check(mid,weights,days)){
-                minCapacity = mid;
-                hi = mid-1;
-            }
-            else lo = mid+1;
-        }
+        return d;
         
-        return minCapacity;
     }
-    //TC = O(n * log(hi-lo));
+    int shipWithinDays(vector<int>& weights, int days) {
+        int low = *max_element(weights.begin(),weights.end());
+        int high = accumulate(weights.begin(),weights.end(),0);
+        while(low <= high){
+            int mid = (low+high)/2;
+            if(daysReq(weights,mid) <= days)
+                high = mid-1;
+            else 
+                low = mid+1;
+        }
+        return low;
+    }
 };
