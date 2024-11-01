@@ -7,7 +7,7 @@ public:
         int n = arr.size();
         
         //check whether a part of the array is unsorted 
-        //if arr[i] > arr[i+1] occurs more than once it means array is unsorted boyh before and after the largest element
+        //if arr[i] > arr[i+1] occurs more than once it means array is unsorted both before and after the largest element
         for(int i = 0;i < n - 1;i++){
             if(arr[i] > arr[i+1]) count++;
         }
