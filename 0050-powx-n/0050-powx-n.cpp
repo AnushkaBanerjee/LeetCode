@@ -1,29 +1,20 @@
 class Solution {
 public:
-double myPow2(double x, int n)
-{
-    if (n == 0)
-        return 1.0;
-
-    if (n % 2 == 0)
-        return myPow2(x * x, n / 2);
-    else
-        return myPow2(x * x, n / 2) * x;
-}
-
-double myPow(double x, int n)
-{
-    if (x == 0 || x == 1)
-        return x;
-    
-    if (x == -1)
-    {
-        return n % 2 == 0 ? 1.0 : -1.0;
+    double myPow(double x, int n) {
+        double ans = 1.0;
+        long long storePow = n;
+        if(storePow < 0) storePow *= -1;
+        while(storePow){
+            if(storePow % 2){
+                ans = ans*x;
+                storePow-= 1;
+            }
+            else{
+                x = x*x;
+                storePow/= 2;
+            }
+        }
+        if(n < 0) return (double)(1.0)/(double)ans;
+        else return ans;
     }
-    if (n < 0)
-    {
-        x = 1 / x;
-    }
-    return myPow2(x, n);
-}
 };
