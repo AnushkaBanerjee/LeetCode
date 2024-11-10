@@ -1,19 +1,19 @@
 class Solution {
 public:
     vector<int> rearrangeArray(vector<int>& nums) {
-        int pos = 0,neg = 1;
         int n = nums.size();
-        vector<int>arr(n,0);
-        for(int i = 0;i < nums.size();i++){
+        vector<int>ans(n,0);//the answer array 
+        int posIn = 0,negIn = 1;
+        for(int i = 0;i < n;i++){
             if(nums[i] < 0){
-                arr[neg] = nums[i];
-                neg+=2;
+                ans[negIn] = nums[i];
+                negIn += 2;      
             }
             else{
-                arr[pos] = nums[i];
-                pos+=2;
+                ans[posIn] = nums[i];
+                posIn += 2;      
             }
         }
-        return arr;
+        return ans;     
     }
 };
