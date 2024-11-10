@@ -1,33 +1,31 @@
 class Solution {
 public:
     void nextPermutation(vector<int>& nums) {
-         int n = nums.size();
-        //1)finding pivot index
         int idx = -1;
-        for(int i = n-2;i >= 0 ;i--){
+        int n = nums.size();
+        //find the break point
+        for(int i = n-2;i >= 0;i--){
             if(nums[i]<nums[i+1]){
                 idx = i;
                 break;
             }
         }
-        if(idx == -1){
-            reverse(nums.begin(),nums.end());
-            return;
-        }
-        //2)sort/reverse after pivot
-        reverse(nums.begin()+(idx+1),nums.end());
-        //3)finding just greater element than idx
-        int j = -1;
-        for(int i = idx+1 ;i<n;i ++){
+        // If break point does not exist:
+    if (idx == -1) {
+        // reverse the whole array:
+        reverse(nums.begin(), nums.end());
+        return;
+    }
+        //find the immediate greater element in the next half.
+        for(int i = n-1;i >= idx+1;i--){
             if(nums[i]>nums[idx]){
-                j = i;
+                int temp = nums[i];
+                nums[i] = nums[idx];
+                nums[idx] = temp;
                 break;
             }
         }
-        //4)Swapping idx and j
-        int temp = nums[idx];
-        nums[idx]=nums[j];
-        nums[j]=temp;
-        return;
+        //reverse the other half
+        reverse(nums.begin()+idx+1,nums.end());
     }
 };
