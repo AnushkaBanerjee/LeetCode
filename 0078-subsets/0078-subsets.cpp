@@ -1,16 +1,24 @@
 class Solution {
 public:
-    vector<vector<int>> subsets(vector<int>& nums) {
-        int n = nums.size();
-        vector<vector<int>> powSet;
-        for (int num = 0; num < (1 << n); num++){
-            vector<int>subset;
-            for(int i = 0;i < n;i++){
-                if(num & (1 << i))
-                    subset.push_back(nums[i]);
-            }
-            powSet.push_back(subset);
+    
+   void  helper(vector<int>& nums,vector<int> ans,vector<vector<int>> &finalAns,int idx)
+       
+    {
+        if(idx == nums.size()){
+            finalAns.push_back(ans);
+            return;
         }
-        return powSet;
+     
+        helper(nums,ans,finalAns,idx+1);
+        ans.push_back(nums[idx]);
+        helper(nums,ans,finalAns,idx+1);
+    }
+    vector<vector<int>> subsets(vector<int>& nums) {
+        //we need tp store the vectors in a vector
+        vector<int> ans;
+        vector<vector<int>> finalAns;
+        helper(nums,ans,finalAns,0);
+        return finalAns;
+        
     }
 };
